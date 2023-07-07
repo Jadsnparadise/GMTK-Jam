@@ -373,7 +373,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 665064880}
-  time: 0
 --- !u!1 &873017502
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,6 +561,8 @@ MonoBehaviour:
   playerTransform: {fileID: 1314361510}
   camPivot: {fileID: 1521014357}
   mainCam: {fileID: 1521014357}
+  camOffset: {x: 0, y: 0, z: 0}
+  dir: {x: 0, y: 0, z: 0}
 --- !u!136 &1314361507
 CapsuleCollider:
   m_ObjectHideFlags: 0
