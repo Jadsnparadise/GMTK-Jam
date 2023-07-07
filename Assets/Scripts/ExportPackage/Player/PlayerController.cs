@@ -19,9 +19,15 @@ namespace Game.GameSystem.Player
 
         [Header("Transforms")]
         [SerializeField] Transform playerTransform;
+        
+        //[SerializeField] Transform itemRendererCam;
+
+        [Header("CamSettings")]
         [SerializeField] Transform camPivot;
         [SerializeField] Transform mainCam;
-        //[SerializeField] Transform itemRendererCam;
+        [SerializeField] Vector3 camOffset;
+
+        [SerializeField] 
         Vector3 dir;
         Vector3 inputs;
         Rigidbody rig;
@@ -68,7 +74,7 @@ namespace Game.GameSystem.Player
 
             mainCam.rotation = Quaternion.Lerp(mainCam.rotation, Quaternion.Euler(rY * mouseSense.y, playerTransform.eulerAngles.y, 0f), mouseSmoothness * Time.deltaTime);
             //itemRendererCam.rotation = mainCam.rotation;
-            camPivot.position = Vector3.Lerp(camPivot.position, playerTransform.position, moveSpeed * Time.deltaTime);
+            camPivot.position = Vector3.Lerp(camPivot.position, playerTransform.position + camOffset, moveSpeed * Time.deltaTime);
 
             
         }
