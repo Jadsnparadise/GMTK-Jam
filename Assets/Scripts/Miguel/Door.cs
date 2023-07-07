@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 using FMODUnity;
 using FMOD;
-using UnityEngine;
-using FMOD.Studio;
 
 namespace Game.GameSystem.Interact 
 {

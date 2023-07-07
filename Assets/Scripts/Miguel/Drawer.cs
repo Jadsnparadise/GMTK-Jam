@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
+using FMOD;
 
 namespace Game.GameSystem.Interact
 {
@@ -10,6 +12,8 @@ namespace Game.GameSystem.Interact
         [SerializeField] float m_zPositionBuff;
         Vector3 m_openedPosition;
         Vector3 m_closedPosition;
+        [SerializeField] EventReference m_openAudio;
+        [SerializeField] EventReference m_closeAudio;
 
         bool m_opened = false;
         private void Start()
@@ -45,11 +49,13 @@ namespace Game.GameSystem.Interact
         void Open()
         {
             m_opened = true;
+            RuntimeManager.PlayOneShot(m_openAudio);
         }
 
         void Close()
         {
             m_opened = false;
+            RuntimeManager.PlayOneShot(m_closeAudio);
         }
     }
 }
