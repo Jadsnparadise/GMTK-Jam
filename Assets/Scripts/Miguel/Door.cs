@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using FMODUnity;
+using FMOD;
 using UnityEngine;
+using FMOD.Studio;
 
 namespace Game.GameSystem.Interact 
 {
@@ -10,6 +13,9 @@ namespace Game.GameSystem.Interact
         [SerializeField] Vector3 m_openedAngle;
         [SerializeField] Vector3 m_closedAngle;
         [SerializeField] Transform m_doorPivot;
+        [SerializeField] EventReference m_openAudio;
+        [SerializeField] EventReference m_closeAudio;
+
         bool m_opened = false;
         private void Start()
         {
@@ -42,11 +48,13 @@ namespace Game.GameSystem.Interact
         void Open()
         {
             m_opened = true;
+            RuntimeManager.PlayOneShot(m_openAudio);
         }
 
         void Close()
         {
             m_opened = false;
+            RuntimeManager.PlayOneShot(m_closeAudio);
         }
     }
 }
