@@ -27,6 +27,14 @@ namespace Game.GameSystem.Player
 
         void Update()
         {
+            if (playerInputManager.InteractKeycodePressed())
+            {
+                if (PlayerManager.Instance.m_PlayerStatus.m_Hide)
+                {
+                    PlayerManager.Instance.m_PlayerStatus.ExitHideSpot();
+                    return;
+                }
+            }
             if (!InteractLogic()) return;
             PlayerInteract();
         }

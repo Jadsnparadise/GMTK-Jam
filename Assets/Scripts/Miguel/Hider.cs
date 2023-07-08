@@ -30,20 +30,12 @@ namespace Game.GameSystem.Interact
 
         void EnterHide()
         {
-            m_enterPosition = m_playerManager.transform.position;
-            m_playerManager.m_Collider.enabled = false;
-            m_playerManager.m_Rig.useGravity = false;
-            m_playerManager.m_PlayerStatus.SetHide(true);
-            
-            m_playerManager.transform.position = m_hidePosition.position;
+            m_playerManager.m_PlayerStatus.EnterHideSpot(m_hidePosition);
         }
 
         void ExitHide()
         {
-            m_playerManager.m_Collider.enabled = true;
-            m_playerManager.m_Rig.useGravity = true;
-            m_playerManager.m_PlayerStatus.SetHide(false);
-            m_playerManager.transform.position = m_enterPosition;
+            m_playerManager.m_PlayerStatus.ExitHideSpot();
         }
     }
 }
