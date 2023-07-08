@@ -8,6 +8,7 @@ namespace Game.GameSystem.Player
     {
         [Header("Player Settings")]
         [SerializeField] float moveSpeed = 10f;
+        bool canMove;
 
         [Header("Input Settings")]
         [SerializeField] PlayerInputs playerInputManager;
@@ -40,6 +41,7 @@ namespace Game.GameSystem.Player
         {
             playerInputManager ??= gameObject.TryGetComponent(out PlayerInputs _newPlayerInput) ? _newPlayerInput : gameObject.AddComponent<PlayerInputs>();
             rig = GetComponent<Rigidbody>();
+            SetCanMove(true);
             
         }
 
@@ -52,6 +54,7 @@ namespace Game.GameSystem.Player
         {
             InputListener();
             Move();
+            Aim();
         }
 
         private void FixedUpdate()
@@ -66,17 +69,17 @@ namespace Game.GameSystem.Player
 
         void Move()
         {
+            if (!canMove) return;
             if (playerInputManager.PauseCamPressed()) SetFollowMouse(!followMouse);
             if (!followMouse) return;
             playerTransform.Rotate(0, rX, 0, Space.World);
+        }
 
-            
-
+        void Aim()
+        {
             mainCam.rotation = Quaternion.Lerp(mainCam.rotation, Quaternion.Euler(rY * mouseSense.y, playerTransform.eulerAngles.y, 0f), mouseSmoothness * Time.deltaTime);
             //itemRendererCam.rotation = mainCam.rotation;
             camPivot.position = Vector3.Lerp(camPivot.position, playerTransform.position + camOffset, moveSpeed * Time.deltaTime);
-
-            
         }
 
         public void SetFollowMouse(bool _newValue)
@@ -97,6 +100,11 @@ namespace Game.GameSystem.Player
             
         //    rX = Mathf.Lerp(rX, Input.GetAxisRaw("Mouse X") * mouseSense.x, mouseSmoothness * Time.deltaTime);
         //    rY = Mathf.Clamp(rY - Input.GetAxisRaw("Mouse Y") * mouseSense.y * mouseSmoothness * Time.deltaTime, maxYView.x, maxYView.y);
+        }
+
+        public void SetCanMove(bool setCanMove)
+        {
+            canMove = setCanMove;
         }
     }
 }

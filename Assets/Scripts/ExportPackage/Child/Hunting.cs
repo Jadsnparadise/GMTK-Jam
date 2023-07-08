@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Hunting : MonoBehaviour
 {
-    [SerializeField] private float huntInterval;
-    [SerializeField] private float huntDuration;
+    [SerializeField] private float huntInterval = 90;
+    [SerializeField] private float huntDuration = 30;
     private float huntTime;
-    [SerializeField] private bool hunting;
+    private bool hunting;
 
     void Start()
     {
