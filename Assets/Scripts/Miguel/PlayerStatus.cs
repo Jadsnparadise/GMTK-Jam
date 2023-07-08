@@ -9,6 +9,8 @@ namespace Game.GameSystem.Player
         PlayerManager m_playerManager;
         bool m_hide;
         Vector3 m_enterPosition;
+        int m_currentKeys;
+        public int m_CurrentKeys => m_currentKeys;
 
         public bool m_Hide => m_hide;
 
@@ -39,6 +41,20 @@ namespace Game.GameSystem.Player
             m_playerManager.m_Rig.useGravity = true;
             SetHide(false);
             m_playerManager.transform.position = m_enterPosition;
+        }
+
+        public void AddKey()
+        {
+            m_currentKeys++;
+        }
+
+        public void UseKey()
+        {
+            if (m_currentKeys <= 0)
+            {
+                return;
+            }
+            m_currentKeys--;
         }
     }
 }
