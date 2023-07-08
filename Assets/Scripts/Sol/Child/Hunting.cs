@@ -28,8 +28,8 @@ public class Hunting : MonoBehaviour
     }
 
     void HutingPlayerState()
-    {
-        agent.SetDestination(PlayerManager.Instance.transform.position);   
+    { 
+            agent.SetDestination(PlayerManager.Instance.transform.position);
     }
 
     IEnumerator StartHunt()
