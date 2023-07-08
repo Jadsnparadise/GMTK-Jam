@@ -1,28 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity;
+using FMODUnity;
 
-public class ball_script : MonoBehaviour
+namespace Game.GameSystem
 {
-    //variable
-    [SerializeField] float force;
-    //component
-    Rigidbody rb;
-    // Start is called before the first frame update
-    void Start()
+    public class ball_script : MonoBehaviour
     {
-        rb = GetComponent<Rigidbody>();
-    }
+        //variable
+        [SerializeField] float force;
+        //component
+        Rigidbody rb;
+        // Start is called before the first frame update
+        EventReference ballAudio;
+        void Start()
+        {
+            rb = GetComponent<Rigidbody>();
+            ThrowBall();
+            RuntimeManager.PlayOneShot(ballAudio);
+        }
 
-    public void ThrowBall()
-    {
-        rb.AddForce(transform.right * force, ForceMode.Impulse);
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
+        public void ThrowBall()
+        {
+            rb.AddForce(transform.right * force, ForceMode.Impulse);
+        }
         
     }
 }
