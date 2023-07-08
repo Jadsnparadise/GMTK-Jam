@@ -1,6 +1,8 @@
+using Game.GameSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Hunting : MonoBehaviour
 {
@@ -8,6 +10,7 @@ public class Hunting : MonoBehaviour
     [SerializeField] private float huntDuration = 30;
     private float huntTime;
     private bool hunting;
+    [SerializeField] NavMeshAgent agent;
 
     void Start()
     {
@@ -24,9 +27,15 @@ public class Hunting : MonoBehaviour
         }
     }
 
+    void HutingPlayerState()
+    {
+        agent.SetDestination(PlayerManager.Instance.transform.position);   
+    }
+
     IEnumerator StartHunt()
     {
         hunting = true;
+        HutingPlayerState();
         yield return new WaitForSeconds(huntDuration);
         hunting = false;
     }
