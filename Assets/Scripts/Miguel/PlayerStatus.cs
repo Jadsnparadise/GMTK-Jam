@@ -18,6 +18,7 @@ namespace Game.GameSystem.Player
         public void SetHide(bool hide)
         {
             m_hide = hide;
+            PlayerManager.Instance.m_PlayerController.SetCanMove(!m_hide);
         }
     }
 }
