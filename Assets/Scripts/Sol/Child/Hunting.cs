@@ -11,7 +11,6 @@ public class Hunting : MonoBehaviour
     private float huntTime;
     private bool hunting;
     [SerializeField] NavMeshAgent agent;
-    [SerializeField] GameObject player;
 
     void Start()
     {
@@ -26,21 +25,17 @@ public class Hunting : MonoBehaviour
             huntTime = huntInterval;
             if (!hunting) StartCoroutine(StartHunt());
         }
-        HutingPlayerState();
     }
 
     void HutingPlayerState()
     {
-        Debug.Log("passou aqui");
-        agent.SetDestination(player.transform.position);
-        Debug.Log("player position: " + player.transform.position);
+        agent.SetDestination(PlayerManager.Instance.transform.position);   
     }
 
     IEnumerator StartHunt()
     {
         hunting = true;
-        
-
+        HutingPlayerState();
         yield return new WaitForSeconds(huntDuration);
         hunting = false;
     }
