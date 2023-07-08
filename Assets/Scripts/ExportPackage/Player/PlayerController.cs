@@ -64,19 +64,20 @@ namespace Game.GameSystem.Player
 
         void FixedMove()
         {
+            if (!canMove) return;
             rig.AddForce(dir * moveSpeed, ForceMode.Force);
         }
 
         void Move()
         {
-            if (!canMove) return;
+            return;
             if (playerInputManager.PauseCamPressed()) SetFollowMouse(!followMouse);
             if (!followMouse) return;
-            playerTransform.Rotate(0, rX, 0, Space.World);
         }
 
         void Aim()
         {
+            playerTransform.Rotate(0, rX, 0, Space.World);
             mainCam.rotation = Quaternion.Lerp(mainCam.rotation, Quaternion.Euler(rY * mouseSense.y, playerTransform.eulerAngles.y, 0f), mouseSmoothness * Time.deltaTime);
             //itemRendererCam.rotation = mainCam.rotation;
             camPivot.position = Vector3.Lerp(camPivot.position, playerTransform.position + camOffset, moveSpeed * Time.deltaTime);
