@@ -9,6 +9,7 @@ using System;
 public class AudioManager : Game.GameSystem.Singleton.Singleton<AudioManager>
 {
     public Action OnDoorOpen;
+
     public void OnDoorOpenSound()
     {
         OnDoorOpen?.Invoke();
