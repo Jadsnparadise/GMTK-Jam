@@ -14,7 +14,7 @@ namespace Game.GameSystem.Interact
         [SerializeField] Transform m_doorPivot;
         [SerializeField] EventReference m_openAudio;
         [SerializeField] EventReference m_closeAudio;
-        [SerializeField] bool m_needBool;
+        [SerializeField] bool m_locked;
 
         bool m_opened = false;
         private void Start()
@@ -30,8 +30,14 @@ namespace Game.GameSystem.Interact
 
         public virtual void Interact()
         {
-            if (m_needBool)
+            if (m_locked)
             {
+                if (!PlayerManager.Instance.m_PlayerStatus.HasKey())
+                {
+                    return;
+                }
+                PlayerManager.Instance.m_PlayerStatus.UseKey();
+                m_locked = false;
             }
             ChangeState();
         }

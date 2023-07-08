@@ -50,11 +50,12 @@ namespace Game.GameSystem.Player
 
         public void UseKey()
         {
-            if (m_currentKeys <= 0)
-            {
-                return;
-            }
             m_currentKeys--;
+        }
+
+        public bool HasKey()
+        {
+            return m_currentKeys > 0;
         }
     }
 }
